@@ -8,9 +8,17 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import com.smartapps.mathrace.engine.MathQuestionGenerator;
+import com.smartapps.mathrace.engine.QuestionType;
 
 
 public class MainActivity extends ActionBarActivity {
+    private TextView tvQuestion;
+    private EditText edAnswer;
+    private MathQuestionGenerator mathQuestionGenerator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,6 +29,9 @@ public class MainActivity extends ActionBarActivity {
                     .add(R.id.container, new PlaceholderFragment())
                     .commit();
         }
+        android.app.Fragment fragment = getFragmentManager().findFragmentById(R.id.container);
+
+        mathQuestionGenerator = new MathQuestionGenerator(43, QuestionType.ADD,1,15);
     }
 
 
@@ -57,7 +68,8 @@ public class MainActivity extends ActionBarActivity {
         @Override
         public View onCreateView(LayoutInflater inflater, ViewGroup container,
                                  Bundle savedInstanceState) {
-            View rootView = inflater.inflate(R.layout.fragment_keyboard, container, false);
+            View rootView = inflater.inflate(R.layout.fragment_main, container, false);
+
             return rootView;
         }
     }
